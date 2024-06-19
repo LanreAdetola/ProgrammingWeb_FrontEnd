@@ -1,5 +1,6 @@
 <template>
   <div>
+    <NavigationBar />
     <div v-if="spot">
       <h2>Spot Name: {{ spot.name }}</h2>
       <p><strong>Location:</strong> {{ spot.location }}</p>
@@ -25,13 +26,22 @@
     <div v-else>
       <p>Loading spot details...</p>
     </div>
+    <br>
+    <br>
+    <br>
+    <FooterBar />
   </div>
 </template>
 
 <script>
 import axios from 'axios';
+import NavigationBar from './NavigationBar.vue';
+import FooterBar from './FooterBar.vue';
 
 export default {
+  components:{
+    NavigationBar,FooterBar
+  },
   data() {
     return {
       spot: null,

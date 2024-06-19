@@ -1,8 +1,9 @@
 <template>
   <div>
+    <NavigationBar />
     <h2>User's Camping Spots</h2>
     <div v-if="loading">
-      <p>Loading...</p> 
+      <p>Loading...</p> <!-- Consider using a spinner here -->
     </div>
     <div v-else-if="campingSpots.length">
       <div v-for="spot in campingSpots" :key="spot.id" class="camping-spot">
@@ -26,9 +27,13 @@
 
 <script>
 import axios from 'axios';
+import NavigationBar from './NavigationBar.vue';
 import { getUserFromLocalStorage } from '../components/utils/user';
 
 export default {
+  components: {
+    NavigationBar
+  },
   data() {
     return {
       campingSpots: [],
@@ -52,6 +57,7 @@ export default {
         }
       } catch (error) {
         console.error('Error fetching user camping spots:', error);
+        // Display error message to user or handle gracefully
       } finally {
         this.loading = false;
       }

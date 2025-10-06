@@ -5,4 +5,16 @@ module.exports = {
   chainWebpack: config => {
     config.resolve.alias.set('@', path.resolve(__dirname, 'src'));
   },
+  configureWebpack: {
+    resolve: {
+      fallback: {
+        crypto: require.resolve('crypto-browserify'),
+        stream: require.resolve('stream-browserify'),
+        vm: require.resolve('vm-browserify')
+      }
+    }
+  },
+  devServer: {
+    https: true
+  }
 };
